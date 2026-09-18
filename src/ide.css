@@ -1,0 +1,548 @@
+/* ==========================================================================
+   IDE SHELL, FILE EXPLORER, EDITOR & PROBLEMS PANEL
+   ========================================================================== */
+
+.ide-shell {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  overflow: hidden;
+  background: #0d0f12;
+  color: #cdd0d7;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* File Explorer */
+.ide-explorer {
+  min-width: 0;
+  border-right: 1px solid #282b31;
+  background: #121419;
+}
+
+.ide-explorer > header {
+  height: 40px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #25282e;
+  color: #848894;
+}
+
+.ide-explorer > header span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.ide-explorer > header b {
+  min-width: 20px;
+  height: 20px;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: #22252b;
+  color: #aeb2bd;
+  font-size: 11px;
+}
+
+.ide-root {
+  height: 36px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ba0aa;
+}
+
+.ide-root span {
+  font-size: 12px;
+}
+
+.ide-root b {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #b5bac5;
+}
+
+.ide-files {
+  padding: 4px 8px;
+}
+
+.ide-files button {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px 0 calc(18px + (var(--depth) * 10px));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #9ea2ac;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.ide-files button:hover {
+  background: #1a1d22;
+  color: #d3d5da;
+}
+
+.ide-files button.active {
+  background: #202838;
+  color: #fff;
+  box-shadow: inset 2px 0 #6490ff;
+}
+
+.ide-files button > i {
+  width: 20px;
+  font: 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-style: normal;
+  color: #7898f7;
+}
+
+.ide-files button > i.type-css { color: #b487ed; }
+.ide-files button > i.type-javascript { color: #e8c95a; }
+
+.ide-files button > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ide-files button > em {
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: #6791ff;
+  box-shadow: 0 0 8px #6791ff;
+  animation: idePulse 1s infinite;
+}
+
+/* Editor Main Area */
+.ide-main {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 40px 30px minmax(0, 1fr) 28px;
+  background: #0b0d10;
+}
+
+.ide-tabs {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #272a30;
+  background: #111318;
+}
+
+.ide-tabs > div {
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-right: 1px solid #282b31;
+  border-top: 2px solid #668fff;
+  background: #0d0f12;
+}
+
+.ide-tabs > div i {
+  color: #7698ff;
+  font: 11px ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-style: normal;
+}
+
+.ide-tabs > div span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e5e8ef;
+}
+
+.ide-tabs > div b {
+  color: #c99aff;
+  font-size: 10px;
+}
+
+.ide-live {
+  margin-left: auto;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #7e8390;
+  font-size: 12px;
+}
+
+.ide-live > i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3cc684;
+}
+
+.ide-live.streaming > i {
+  background: #6691ff;
+  box-shadow: 0 0 8px #6691ff;
+  animation: idePulse 1s infinite;
+}
+
+.ide-breadcrumb {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #1f2227;
+  background: #0d0f12;
+  color: #717582;
+  font-size: 12px;
+}
+
+.ide-breadcrumb b {
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #b0b4c0;
+  font-weight: 500;
+}
+
+.ide-breadcrumb i {
+  font-style: normal;
+}
+
+/* Editor with Pixel-Perfect Gutter Alignment */
+.ide-editor {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  overflow: hidden;
+  background: #0b0d10;
+  position: relative;
+}
+
+.ide-gutter {
+  padding: 12px 0 40px;
+  overflow: hidden;
+  background: #0d0f12;
+  color: #4a4f5b;
+  text-align: right;
+  font: 13px/20px "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  user-select: none;
+  border-right: 1px solid #1a1c22;
+}
+
+.ide-gutter span {
+  height: 20px;
+  line-height: 20px;
+  padding-right: 12px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.ide-editor textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px 28px 40px 16px;
+  border: 0;
+  outline: 0;
+  resize: none;
+  overflow: auto;
+  background: #0b0d10;
+  color: #d2d7e0;
+  caret-color: #7da0ff;
+  tab-size: 2;
+  white-space: pre;
+  font: 13px/20px "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  box-sizing: border-box;
+}
+
+.ide-editor textarea::selection {
+  background: #284875;
+}
+
+/* IDE Bottom Status Bar */
+.ide-status {
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #262930;
+  background: #171a20;
+  color: #8c919d;
+  font-size: 11px;
+}
+
+.ide-status > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ide-status > div:first-child span:first-child {
+  color: #9bb3ff;
+  font-weight: 500;
+}
+
+.ide-status button {
+  padding: 2px 7px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #9398a6;
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.18s;
+}
+
+.ide-status button:hover {
+  background: #292d34;
+  color: #fff;
+}
+
+.ide-status button.has-errors {
+  color: #ff7d89;
+  font-weight: 600;
+}
+
+/* Problems Panel */
+.ide-problems {
+  position: absolute;
+  z-index: 20;
+  inset: auto 12px 12px 12px;
+  max-height: 52%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #30343c;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(15, 17, 21, 0.98);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.ide-problems > header {
+  height: 38px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #292d34;
+  background: #171a20;
+}
+
+.ide-problems > header > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ide-problems > header b {
+  font-size: 13px;
+  color: #e5e8ef;
+}
+
+.ide-problems > header span {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: #292d35;
+  color: #b0b5c2;
+  font-size: 11px;
+}
+
+.ide-problems > header button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #8c919e;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ide-problems > header button:hover {
+  color: #fff;
+}
+
+.ide-problems > div {
+  overflow: auto;
+  padding: 6px;
+}
+
+.ide-problems > div > button {
+  width: 100%;
+  padding: 8px 10px;
+  display: flex;
+  gap: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #bdc1c9;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.ide-problems > div > button:hover {
+  background: #20242b;
+}
+
+.ide-problems > div > button > i {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  font: 11px/1 sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.ide-problems > div > button > i.error {
+  background: #48242b;
+  color: #ff7c89;
+}
+
+.ide-problems > div > button > i.warning {
+  background: #463b20;
+  color: #eabe59;
+}
+
+.ide-problems > div > button > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ide-problems > div > button b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  color: #e1e3ea;
+}
+
+.ide-problems > div > button small {
+  color: #797e8b;
+  font-size: 11px;
+}
+
+.ide-problems > div > p {
+  padding: 20px;
+  color: #63ca94;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.studio-empty-code {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: #0b0d10;
+  color: #7c818e;
+  height: 100%;
+}
+
+.studio-empty-code > span {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #30343b;
+  border-radius: 14px;
+  color: #7698ff;
+  font-size: 22px;
+}
+
+.studio-empty-code > b {
+  font-size: 14px;
+  color: #d1d5df;
+}
+
+.studio-empty-code > small {
+  color: #717582;
+  font-size: 12px;
+}
+
+@keyframes idePulse {
+  50% { opacity: 0.35; }
+}
+
+@media (max-width: 900px) {
+  .ide-shell {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .ide-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 44px minmax(0, 1fr);
+  }
+  .ide-explorer {
+    border: 0;
+    border-bottom: 1px solid #282b31;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .ide-explorer > header,
+  .ide-root {
+    display: none;
+  }
+  .ide-files {
+    padding: 6px 8px;
+    display: flex;
+    gap: 6px;
+  }
+  .ide-files button {
+    width: auto;
+    min-width: max-content;
+    height: 32px;
+    padding: 0 12px !important;
+  }
+  .ide-files button.active {
+    box-shadow: inset 0 -2px #6490ff;
+  }
+  .ide-main {
+    grid-template-rows: 36px 26px minmax(0, 1fr) 26px;
+  }
+  .ide-editor {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+  .ide-gutter span {
+    padding-right: 8px;
+  }
+  .ide-editor textarea {
+    padding-left: 12px;
+    padding-right: 14px;
+  }
+  .ide-live {
+    display: none;
+  }
+}

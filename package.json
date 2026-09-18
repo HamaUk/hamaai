@@ -1,0 +1,21 @@
+{
+  "name": "hama-coder",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "vite build",
+    "start": "node server/index.js --prod"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "axe-core": "^4.13.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "jszip": "^3.10.2",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  }
+}

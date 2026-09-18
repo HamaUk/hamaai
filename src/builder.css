@@ -1,0 +1,254 @@
+/* ==========================================================================
+   STUDIO BASE, SIDEBAR & CORE TOKENS
+   ========================================================================== */
+
+:root {
+  --s-bg: #090a0c;
+  --s-panel: #141519;
+  --s-ink: #f0f1f4;
+  --s-muted: #838794;
+  --s-line: #27282e;
+  --s-blue: #4d8dff;
+  --s-purple: #7956e8;
+}
+
+.studio-app {
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  background: var(--s-bg);
+  color: var(--s-ink);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.studio-app button,
+.studio-app textarea,
+.studio-app select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Sidebar Component */
+.studio-sidebar {
+  height: 100%;
+  padding: 16px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #121317 0%, #0f1013 100%);
+  border-right: 1px solid var(--s-line);
+  overflow: hidden;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.studio-brand {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.studio-brand b {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.studio-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  background: linear-gradient(145deg, #4b84f5, #774fe7);
+  box-shadow: 0 5px 16px rgba(74, 111, 231, 0.35);
+}
+
+.studio-new {
+  height: 38px;
+  margin: 14px 0 20px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #33353c;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #1c1e24, #16171c);
+  color: #e5e7ed;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.studio-new:hover {
+  border-color: #555d72;
+  background: #20222a;
+  color: #fff;
+}
+
+.studio-new kbd {
+  margin-left: auto;
+  color: #8c909e;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.studio-label {
+  margin: 0 6px 8px;
+  color: #828694;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.studio-projects {
+  display: grid;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+}
+
+.studio-projects > button {
+  height: 36px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #9da0ac;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.studio-projects > button:hover,
+.studio-projects > button.active {
+  background: #1f2229;
+  color: #fff;
+}
+
+.studio-projects > button i {
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid #636672;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.studio-projects > button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-projects > small {
+  padding: 10px;
+  color: #797d8b;
+  font-size: 12px;
+}
+
+.studio-grow {
+  flex: 1;
+}
+
+.studio-connection {
+  margin-bottom: 12px;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #292b31;
+  border-radius: 10px;
+  background: #15161a;
+}
+
+.studio-connection > i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #777;
+  flex: 0 0 auto;
+}
+
+.studio-connection > i.on {
+  background: #27bd78;
+  box-shadow: 0 0 8px rgba(39, 189, 120, 0.5);
+}
+
+.studio-connection span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.studio-connection b {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e8ef;
+}
+
+.studio-connection small {
+  color: #828794;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-user {
+  height: 44px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #23252b;
+  padding-top: 10px;
+}
+
+.studio-user > span {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #32394d, #1c1d24);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+
+.studio-user div {
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-user b {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e5ec;
+}
+
+.studio-user small {
+  color: #797d8b;
+  font-size: 11px;
+}
+
+.studio-scrim {
+  display: none;
+}

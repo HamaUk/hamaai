@@ -1,0 +1,1010 @@
+/* ==========================================================================
+   AGENT TOOLS & MODALS (CHANGE REVIEW, HISTORY, RESPONSIVE QA, ASSETS)
+   ========================================================================== */
+
+/* Overlays & Panels - Centered with proper margin (Fixing the 278px offset bug) */
+.change-review,
+.history-panel,
+.responsive-panel {
+  position: fixed;
+  z-index: 80;
+  inset: 58px 18px 18px 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #30343d;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0e1014;
+  color: #d9dce2;
+  box-shadow: 0 25px 100px rgba(0, 0, 0, 0.85);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Panel Headers */
+.change-review > header,
+.history-panel > header,
+.responsive-panel > header,
+.element-panel > header,
+.tool-modal section > header {
+  min-height: 56px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #292d34;
+  background: #15181d;
+}
+
+.change-review > header > div,
+.history-panel > header > div,
+.responsive-panel > header > div,
+.element-panel > header > div,
+.tool-modal section > header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.change-review small,
+.history-panel small,
+.responsive-panel small,
+.element-panel small,
+.tool-modal small {
+  color: #838896;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.change-review b,
+.history-panel b,
+.responsive-panel b,
+.element-panel b,
+.tool-modal b {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f3f7;
+}
+
+.change-review > header > span {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #20242b;
+  color: #a4a9b5;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Diff Review Modal */
+.change-review-body {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.change-review-body > aside {
+  padding: 10px;
+  border-right: 1px solid #292d34;
+  background: #121419;
+  overflow: auto;
+}
+
+.change-review-body > aside button {
+  width: 100%;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #a2a7b3;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.change-review-body > aside button:hover {
+  background: #1a1e28;
+  color: #fff;
+}
+
+.change-review-body > aside button.active {
+  background: #20293a;
+  color: #e5e8ed;
+}
+
+.change-review-body > aside small {
+  white-space: nowrap;
+  color: #72c999;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.change-review-body > section {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 56px;
+}
+
+.change-conflict {
+  padding: 10px 16px;
+  border-bottom: 1px solid #594622;
+  background: #302817;
+  color: #e5bd60;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.diff-code {
+  overflow: auto;
+  padding: 10px 0;
+  background: #0b0d10;
+  font: 12px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.diff-code > div {
+  min-height: 20px;
+  display: grid;
+  grid-template-columns: 36px minmax(max-content, 1fr);
+  white-space: pre;
+}
+
+.diff-code > div i {
+  padding-right: 10px;
+  color: #555b65;
+  text-align: right;
+  font-style: normal;
+  user-select: none;
+}
+
+.diff-code > div code {
+  padding: 0 14px;
+}
+
+.diff-code .add {
+  background: #133021;
+  color: #aee4c2;
+}
+
+.diff-code .remove {
+  background: #361b21;
+  color: #efb0b8;
+}
+
+.change-review footer {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #292d34;
+  background: #15181d;
+}
+
+.change-review footer span {
+  flex: 1;
+}
+
+.change-review button,
+.history-panel button,
+.responsive-panel button,
+.element-panel button,
+.tool-modal button {
+  border: 1px solid #343842;
+  border-radius: 7px;
+  background: #1b1e24;
+  color: #b5bac4;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.change-review footer button {
+  height: 36px;
+  padding: 0 14px;
+}
+
+.change-review footer button:hover {
+  background: #252830;
+  color: #fff;
+}
+
+.change-review footer button.primary,
+.element-panel footer button:last-child {
+  border-color: #6d91ff;
+  background: #557ee6;
+  color: white;
+  font-weight: 600;
+}
+
+.change-review footer button.primary:hover,
+.element-panel footer button:last-child:hover {
+  background: #668df5;
+}
+
+.change-review footer button.secondary {
+  border-color: #455c92;
+  color: #c2d1ff;
+}
+
+.history-panel > header button,
+.responsive-panel > header button,
+.element-panel > header button,
+.tool-modal section > header button,
+.change-review > header button {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #8c909e;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.history-panel > header button:hover,
+.responsive-panel > header button:hover,
+.element-panel > header button:hover,
+.tool-modal section > header button:hover,
+.change-review > header button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* History / Version Panel */
+.history-body {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+
+.history-body > aside {
+  padding: 10px;
+  overflow: auto;
+  border-right: 1px solid #292d34;
+  background: #121419;
+}
+
+.history-body > aside button {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.history-body > aside button:hover {
+  background: #191c24;
+}
+
+.history-body > aside button.active {
+  background: #202738;
+}
+
+.history-body > aside i {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #657083;
+}
+
+.history-body > aside button.active i {
+  background: #6b93ff;
+  box-shadow: 0 0 9px #6b93ff;
+}
+
+.history-body > aside span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.history-body > aside b {
+  font-size: 13px;
+  color: #e5e8ef;
+}
+
+.history-body > aside small {
+  color: #797e8c;
+  font-size: 11px;
+}
+
+.history-body > section {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 54px minmax(0, 1fr) 56px;
+}
+
+.history-body > section > header {
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #292d34;
+}
+
+.history-body > section > header input {
+  width: 50%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #e0e3e9;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.history-body > section > header span {
+  color: #828896;
+  font-size: 12px;
+}
+
+.history-body > section > header button {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.history-preview {
+  min-height: 0;
+  padding: 12px;
+  background: #090b0e;
+}
+
+.history-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: white;
+}
+
+.history-files {
+  padding: 12px;
+  overflow: auto;
+}
+
+.history-files > div {
+  height: 44px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #22262c;
+  color: #b5bac4;
+  font-size: 13px;
+}
+
+.history-files > div small {
+  margin-left: 10px;
+  color: #72c999;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.history-files > div button {
+  margin-left: auto;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.history-files > div button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.history-body > section > footer {
+  padding: 10px 18px;
+  border-top: 1px solid #292d34;
+  display: flex;
+  align-items: center;
+}
+
+.history-body > section > footer button {
+  height: 36px;
+  padding: 0 16px;
+  border-color: #8b5a63;
+  color: #ff9ba7;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.history-body > section > footer button:hover {
+  background: #2a1b20;
+  color: #ffb5bf;
+}
+
+.history-empty {
+  display: grid;
+  place-items: center;
+  color: #797e8b;
+  font-size: 14px;
+}
+
+/* Selected Element Panel (Visual Inspector) */
+.element-panel {
+  position: fixed;
+  z-index: 75;
+  top: 70px;
+  right: 28px;
+  width: 320px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+  border: 1px solid #333741;
+  border-radius: 13px;
+  background: #121419;
+  color: #daddE3;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+}
+
+.element-panel > code {
+  margin: 12px;
+  padding: 8px 10px;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #0b0d10;
+  color: #87a7ff;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  text-overflow: ellipsis;
+}
+
+.element-panel > label {
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #888e99;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.element-panel textarea,
+.element-panel input,
+.element-panel select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #30343d;
+  border-radius: 6px;
+  outline: 0;
+  background: #0d0f12;
+  color: #d7dae0;
+  font: 12px Inter, sans-serif;
+  box-sizing: border-box;
+}
+
+.element-panel textarea {
+  height: 65px;
+  resize: vertical;
+}
+
+.element-fields {
+  padding: 0 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.element-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #888e99;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.element-panel footer {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid #292d34;
+}
+
+.element-panel footer button {
+  padding: 8px 14px;
+}
+
+/* Modals (Import, Assets) */
+.tool-modal {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 6, 8, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.tool-modal > section {
+  width: min(720px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid #333741;
+  border-radius: 14px;
+  background: #121419;
+  color: #daddE3;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.85);
+}
+
+.import-drop {
+  margin: 18px;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  border: 2px dashed #3d4658;
+  border-radius: 11px;
+  background: #0d1016;
+  color: #9ba1ad;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.18s;
+  padding: 24px;
+}
+
+.import-drop:hover,
+.import-drop.dragover {
+  border-color: #668cf4;
+  background: #111522;
+}
+
+.import-drop input,
+.folder-input input,
+.asset-upload input {
+  display: none;
+}
+
+.import-drop span {
+  padding: 8px 16px;
+  border-radius: 7px;
+  background: #557ee6;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.folder-input {
+  margin: 0 18px;
+  padding: 12px;
+  display: block;
+  border: 1px solid #30343d;
+  border-radius: 8px;
+  color: #b5bbc7;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.folder-input:hover {
+  background: #171a22;
+  border-color: #4b5266;
+}
+
+.github-import {
+  margin: 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.github-import label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #858b97;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.github-import input {
+  padding: 10px 12px;
+  border: 1px solid #30343d;
+  border-radius: 7px;
+  background: #0c0e12;
+  color: #d9dde4;
+  font-size: 13px;
+}
+
+.github-import button {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Fix global p error color bug: only color explicit error text red! */
+.tool-modal .error-text,
+.tool-modal p.error {
+  margin: 14px 18px;
+  color: #e47f8b;
+  font-size: 12px;
+}
+
+.tool-loading {
+  margin: 18px;
+  color: #88a4f4;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Asset Manager */
+.asset-manager {
+  width: min(880px, 100%) !important;
+}
+
+.asset-upload {
+  margin: 16px;
+  padding: 14px;
+  display: block;
+  border: 2px dashed #3b4351;
+  border-radius: 8px;
+  color: #a6adb8;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.asset-upload:hover {
+  border-color: #5d7ce0;
+  background: #151822;
+  color: #fff;
+}
+
+.asset-grid {
+  padding: 0 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.asset-grid > p {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  color: #797f8c;
+  font-size: 13px;
+  margin: 0;
+}
+
+.asset-grid article {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #2c3037;
+  border-radius: 9px;
+  background: #0d0f13;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.asset-grid article > div {
+  height: 110px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #181b20;
+}
+
+.asset-grid img,
+.asset-grid article > div > div,
+.asset-grid svg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.asset-grid input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #c1c5cc;
+  font-size: 12px;
+}
+
+.asset-grid input:focus {
+  border-color: #3b4050;
+  background: #14171d;
+}
+
+.asset-grid small {
+  color: #727784;
+  font-size: 11px;
+}
+
+/* Responsive Panel (Three-Viewport QA) */
+.responsive-grid {
+  min-height: 0;
+  flex: 1;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  overflow: auto;
+}
+
+.responsive-grid > article {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2e323a;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111319;
+}
+
+.responsive-grid article > header {
+  height: 42px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #262932;
+  background: #15171e;
+}
+
+.responsive-grid article > header b {
+  font-size: 13px;
+  color: #e5e8ef;
+}
+
+.responsive-grid article > header span {
+  color: #828896;
+  font-size: 11px;
+}
+
+.responsive-grid article > div {
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+  display: grid;
+  place-items: flex-start;
+}
+
+.responsive-grid iframe {
+  border: 0;
+  background: #fff;
+  transform-origin: top left;
+}
+
+/* Accurate scaling for viewports */
+.responsive-grid article:first-child iframe {
+  width: 375px;
+  height: 520px;
+  transform: scale(0.72);
+}
+
+.responsive-grid article:nth-child(2) iframe {
+  width: 768px;
+  height: 700px;
+  transform: scale(0.44);
+}
+
+.responsive-grid article:nth-child(3) iframe {
+  width: 1440px;
+  height: 900px;
+  transform: scale(0.24);
+}
+
+.responsive-grid ul {
+  margin: 0;
+  padding: 10px;
+  max-height: 150px;
+  overflow: auto;
+  list-style: none;
+  border-top: 1px solid #262932;
+  background: #0d0f14;
+}
+
+.responsive-grid li {
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid #1c1f27;
+}
+
+.responsive-grid li b {
+  font-size: 12px;
+  color: #d1d5df;
+}
+
+.responsive-grid li small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #797f8c;
+  font-size: 10px;
+}
+
+.responsive-grid li.pass {
+  color: #64ca94;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Repair Policy & Agent Progress Widgets */
+.repair-policy {
+  margin: 12px 14px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #292e37;
+  border-radius: 9px;
+  background: #111419;
+}
+
+.repair-policy > span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.repair-policy b {
+  font-size: 13px;
+  color: #e2e5ec;
+}
+
+.repair-policy small {
+  color: #787e8c;
+  font-size: 11px;
+}
+
+.repair-policy > div {
+  display: flex;
+  padding: 3px;
+  border-radius: 7px;
+  background: #090b0e;
+  gap: 2px;
+}
+
+.repair-policy button {
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #7c828e;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.repair-policy button.active {
+  background: #252b35;
+  color: #fff;
+}
+
+.agent-progress {
+  margin: 12px 14px;
+  padding: 12px;
+  border: 1px solid #292e37;
+  border-radius: 9px;
+  background: #101318;
+}
+
+.agent-progress > header {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: #838896;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.agent-progress > div {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8c929e;
+  font-size: 12px;
+}
+
+.agent-progress > div i {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #242832;
+  font-style: normal;
+  font-size: 10px;
+}
+
+.agent-progress > div.done {
+  color: #c4cad4;
+}
+
+.agent-progress > div.done i {
+  background: #173929;
+  color: #61cd94;
+}
+
+.agent-progress > div.working i {
+  color: #82a0ff;
+  animation: wbPulse 1s infinite;
+}
+
+/* ==========================================================================
+   RESPONSIVE MODAL BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .change-review,
+  .history-panel,
+  .responsive-panel {
+    inset: 50px 10px 10px 10px;
+  }
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+  .change-review-body,
+  .history-body {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .change-review-body,
+  .history-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .change-review-body > aside,
+  .history-body > aside {
+    display: flex;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid #292d34;
+  }
+  .change-review-body > aside button,
+  .history-body > aside button {
+    min-width: 140px;
+  }
+  .change-review footer {
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+  .element-panel {
+    inset: 58px 10px auto;
+    width: auto;
+  }
+  .repair-policy {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
