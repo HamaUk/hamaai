@@ -6,9 +6,14 @@
   "scripts": {
     "dev": "node server/index.js",
     "build": "vite build",
-    "start": "node server/index.js --prod"
+    "start": "node server/index.js --prod",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:open": "npx cap open android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
     "@vitejs/plugin-react": "latest",
     "axe-core": "^4.13.0",
     "dotenv": "^16.6.1",

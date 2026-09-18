@@ -5,3 +5,6 @@ dist/
 server/.env
 *.log
 .DS_Store
+*.apk
+android/.gradle/
+android/app/build/
